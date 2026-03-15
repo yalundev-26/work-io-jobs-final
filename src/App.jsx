@@ -80,6 +80,35 @@ const INIT = {
   preferredRole:'', summary:'', remoteSetup:'',
 }
 
+const STATES_BY_COUNTRY = {
+  'United States': ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'],
+  'Canada': ['Alberta','British Columbia','Manitoba','New Brunswick','Newfoundland and Labrador','Northwest Territories','Nova Scotia','Nunavut','Ontario','Prince Edward Island','Quebec','Saskatchewan','Yukon'],
+  'United Kingdom': ['England','Scotland','Wales','Northern Ireland'],
+  'Australia': ['New South Wales','Victoria','Queensland','Western Australia','South Australia','Tasmania','ACT','Northern Territory'],
+  'New Zealand': ['Auckland','Bay of Plenty','Canterbury','Gisborne','Hawke\'s Bay','Manawatu-Whanganui','Marlborough','Nelson','Northland','Otago','Southland','Taranaki','Tasman','Waikato','Wellington','West Coast'],
+  'Ireland': ['Carlow','Cavan','Clare','Cork','Donegal','Dublin','Galway','Kerry','Kildare','Kilkenny','Laois','Leitrim','Limerick','Longford','Louth','Mayo','Meath','Monaghan','Offaly','Roscommon','Sligo','Tipperary','Waterford','Westmeath','Wexford','Wicklow'],
+  'Germany': ['Baden-Württemberg','Bavaria','Berlin','Brandenburg','Bremen','Hamburg','Hesse','Lower Saxony','Mecklenburg-Vorpommern','North Rhine-Westphalia','Rhineland-Palatinate','Saarland','Saxony','Saxony-Anhalt','Schleswig-Holstein','Thuringia'],
+  'France': ['Auvergne-Rhône-Alpes','Bourgogne-Franche-Comté','Brittany','Centre-Val de Loire','Corsica','Grand Est','Hauts-de-France','Île-de-France','Normandy','Nouvelle-Aquitaine','Occitanie','Pays de la Loire','Provence-Alpes-Côte d\'Azur'],
+  'Netherlands': ['Drenthe','Flevoland','Friesland','Gelderland','Groningen','Limburg','North Brabant','North Holland','Overijssel','South Holland','Utrecht','Zeeland'],
+  'Sweden': ['Blekinge','Dalarna','Gävleborg','Gotland','Halland','Jämtland','Jönköping','Kalmar','Kronoberg','Norrbotten','Örebro','Östergötland','Skåne','Södermanland','Stockholm','Uppsala','Värmland','Västerbotten','Västernorrland','Västmanland','Västra Götaland'],
+  'Norway': ['Agder','Innlandet','Møre og Romsdal','Nordland','Oslo','Rogaland','Troms og Finnmark','Trøndelag','Vestfold og Telemark','Vestland','Viken'],
+  'Denmark': ['Capital Region','Central Denmark','North Denmark','Region Zealand','Southern Denmark'],
+  'Finland': ['Central Finland','Central Ostrobothnia','Kainuu','Kymenlaakso','Lapland','North Karelia','North Ostrobothnia','North Savo','Ostrobothnia','Päijänne Tavastia','Pirkanmaa','Satakunta','South Karelia','South Ostrobothnia','South Savo','Southwest Finland','Tavastia Proper','Uusimaa'],
+  'Philippines': ['Abra','Agusan del Norte','Agusan del Sur','Aklan','Albay','Antique','Apayao','Aurora','Basilan','Bataan','Batanes','Batangas','Benguet','Biliran','Bohol','Bukidnon','Bulacan','Cagayan','Camarines Norte','Camarines Sur','Camiguin','Capiz','Catanduanes','Cavite','Cebu','Cotabato','Davao de Oro','Davao del Norte','Davao del Sur','Davao Occidental','Davao Oriental','Dinagat Islands','Eastern Samar','Guimaras','Ifugao','Ilocos Norte','Ilocos Sur','Iloilo','Isabela','Kalinga','La Union','Laguna','Lanao del Norte','Lanao del Sur','Leyte','Maguindanao del Norte','Maguindanao del Sur','Marinduque','Masbate','Metro Manila (NCR)','Misamis Occidental','Misamis Oriental','Mountain Province','Negros Occidental','Negros Oriental','Northern Samar','Nueva Ecija','Nueva Vizcaya','Occidental Mindoro','Oriental Mindoro','Palawan','Pampanga','Pangasinan','Quezon','Quirino','Rizal','Romblon','Samar','Sarangani','Siquijor','Sorsogon','South Cotabato','Southern Leyte','Sultan Kudarat','Sulu','Surigao del Norte','Surigao del Sur','Tarlac','Tawi-Tawi','Zambales','Zamboanga del Norte','Zamboanga del Sur','Zamboanga Sibugay'],
+  'India': ['Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana','Tripura','Uttar Pradesh','Uttarakhand','West Bengal','Delhi (NCT)','Jammu & Kashmir','Ladakh','Puducherry'],
+  'Pakistan': ['Azad Kashmir','Balochistan','Gilgit-Baltistan','Islamabad Capital Territory','Khyber Pakhtunkhwa','Punjab','Sindh'],
+  'Bangladesh': ['Barisal','Chittagong','Dhaka','Khulna','Mymensingh','Rajshahi','Rangpur','Sylhet'],
+  'Sri Lanka': ['Central','Eastern','North Central','North Western','Northern','Sabaragamuwa','Southern','Uva','Western'],
+  'Nigeria': ['Abia','Adamawa','Akwa Ibom','Anambra','Bauchi','Bayelsa','Benue','Borno','Cross River','Delta','Ebonyi','Edo','Ekiti','Enugu','FCT Abuja','Gombe','Imo','Jigawa','Kaduna','Kano','Katsina','Kebbi','Kogi','Kwara','Lagos','Nasarawa','Niger','Ogun','Ondo','Osun','Oyo','Plateau','Rivers','Sokoto','Taraba','Yobe','Zamfara'],
+  'South Africa': ['Eastern Cape','Free State','Gauteng','KwaZulu-Natal','Limpopo','Mpumalanga','North West','Northern Cape','Western Cape'],
+  'Kenya': ['Baringo','Bomet','Bungoma','Busia','Elgeyo-Marakwet','Embu','Garissa','Homa Bay','Isiolo','Kajiado','Kakamega','Kericho','Kiambu','Kilifi','Kirinyaga','Kisii','Kisumu','Kitui','Kwale','Laikipia','Lamu','Machakos','Makueni','Mandera','Marsabit','Meru','Migori','Mombasa','Murang\'a','Nairobi','Nakuru','Nandi','Narok','Nyamira','Nyandarua','Nyeri','Samburu','Siaya','Taita-Taveta','Tana River','Tharaka-Nithi','Trans Nzoia','Turkana','Uasin Gishu','Vihiga','Wajir','West Pokot'],
+  'Ghana': ['Ahafo','Ashanti','Bono','Bono East','Central','Eastern','Greater Accra','North East','Northern','Oti','Savannah','Upper East','Upper West','Volta','Western','Western North'],
+  'Jamaica': ['Clarendon','Hanover','Kingston','Manchester','Portland','Saint Andrew','Saint Ann','Saint Catherine','Saint Elizabeth','Saint James','Saint Mary','Saint Thomas','Trelawny','Westmoreland'],
+  'Trinidad and Tobago': ['Arima','Chaguanas','Couva-Tabaquite-Talparo','Diego Martin','Mayaro','Penal-Debe','Point Fortin','Port of Spain','Princes Town','Rio Claro-Mayaro','San Fernando','San Juan-Laventille','Sangre Grande','Siparia','Tobago','Tunapuna-Piarco'],
+}
+
+const COUNTRIES = ['United States','Canada','United Kingdom','Australia','New Zealand','Ireland','Germany','France','Netherlands','Sweden','Norway','Denmark','Finland','Philippines','India','Pakistan','Bangladesh','Sri Lanka','Nigeria','South Africa','Kenya','Ghana','Jamaica','Trinidad and Tobago','Other']
+
 const CATEGORIES = ['Web Development','Mobile Development','UI/UX Design','Graphic Design','Content Writing','Copywriting','Digital Marketing','SEO / SEM','Social Media','Video Editing','Data Entry','Virtual Assistant','Customer Support','Accounting / Finance','Project Management']
 
 const ROLES_BY_CATEGORY = {
@@ -132,6 +161,7 @@ function ApplicationForm() {
       setForm(f => {
         const next = { ...f, [field]: val }
         if (field === 'category') next.preferredRole = ''
+        if (field === 'country') next.state = ''
         return next
       })
       if (errors[field]) setErrors(prev => { const n = { ...prev }; delete n[field]; return n })
@@ -187,6 +217,23 @@ function ApplicationForm() {
         {/* ── Address ── */}
         <div style={{ borderTop:'1px solid #e2e8f0', paddingTop:16, marginTop:4 }}>
           <p style={{ margin:'0 0 14px', fontWeight:700, fontSize:15, color:'var(--primary-dark)' }}>Address</p>
+            <div className="form-grid" style={{ marginTop:16 }}>
+            <Field id="country" label="Country" required errors={errors}>
+              <select id="country" value={form.country} onChange={set('country')} className={cls('country')}>
+                <option value="">Select your country</option>
+                {COUNTRIES.map(c => <option key={c}>{c}</option>)}
+              </select>
+            </Field>
+            <Field id="state" label="State / Province" required errors={errors}>
+              <select id="state" value={form.state} onChange={set('state')} className={cls('state')} disabled={!form.country}>
+                <option value="">{form.country ? 'Select state / province' : 'Select a country first'}</option>
+                {form.country && (STATES_BY_COUNTRY[form.country]
+                  ? STATES_BY_COUNTRY[form.country].map(s => <option key={s}>{s}</option>)
+                  : <option>Not Listed</option>
+                )}
+              </select>
+            </Field>
+          </div>
           <Field id="streetAddress" label="Street Address" required errors={errors}>
             <input type="text" id="streetAddress" value={form.streetAddress} onChange={set('streetAddress')}
               placeholder="123 Main Street, Apt 4B" className={cls('streetAddress')} />
@@ -201,56 +248,7 @@ function ApplicationForm() {
                 placeholder="10001" className={cls('zipCode')} />
             </Field>
           </div>
-          <div className="form-grid" style={{ marginTop:16 }}>
-            <Field id="state" label="State / Province" required errors={errors}>
-              <select id="state" value={form.state} onChange={set('state')} className={cls('state')}>
-                <option value="">Select state / province</option>
-                <optgroup label="── United States ──">
-                  {['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware',
-                    'Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky',
-                    'Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi',
-                    'Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico',
-                    'New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania',
-                    'Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont',
-                    'Virginia','Washington','West Virginia','Wisconsin','Wyoming'].map(s => (
-                    <option key={s}>{s}</option>
-                  ))}
-                </optgroup>
-                <optgroup label="── Canada ──">
-                  {['Alberta','British Columbia','Manitoba','New Brunswick','Newfoundland and Labrador',
-                    'Northwest Territories','Nova Scotia','Nunavut','Ontario','Prince Edward Island',
-                    'Quebec','Saskatchewan','Yukon'].map(s => (
-                    <option key={s}>{s}</option>
-                  ))}
-                </optgroup>
-                <optgroup label="── United Kingdom ──">
-                  {['England','Scotland','Wales','Northern Ireland'].map(s => (
-                    <option key={s}>{s}</option>
-                  ))}
-                </optgroup>
-                <optgroup label="── Australia ──">
-                  {['New South Wales','Victoria','Queensland','Western Australia','South Australia',
-                    'Tasmania','ACT','Northern Territory'].map(s => (
-                    <option key={s}>{s}</option>
-                  ))}
-                </optgroup>
-                <optgroup label="── Other / Not Listed ──">
-                  <option>Not Listed</option>
-                </optgroup>
-              </select>
-            </Field>
-            <Field id="country" label="Country" required errors={errors}>
-              <select id="country" value={form.country} onChange={set('country')} className={cls('country')}>
-                <option value="">Select your country</option>
-                {['United States','Canada','United Kingdom','Australia','New Zealand','Ireland',
-                  'Germany','France','Netherlands','Sweden','Norway','Denmark','Finland',
-                  'Philippines','India','Pakistan','Bangladesh','Sri Lanka','Nigeria',
-                  'South Africa','Kenya','Ghana','Jamaica','Trinidad and Tobago','Other'].map(c => (
-                  <option key={c}>{c}</option>
-                ))}
-              </select>
-            </Field>
-          </div>
+        
         </div>
 
         {/* ── Professional ── */}
