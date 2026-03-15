@@ -312,7 +312,7 @@ function ApplicationForm() {
         </div>
 
         <div className="small">
-          By submitting this form, you agree to be contacted regarding freelance job opportunities on WorldwideFreelancerJobs.com.
+          By submitting this form, you agree to be contacted regarding freelance job opportunities on workiojobs.com.
         </div>
 
         {status === 'success' && (
@@ -400,7 +400,7 @@ export default function App() {
       {/* Nav */}
       <nav>
         <div className="nav-inner">
-          <div className="nav-logo">Worldwide<span>Freelancer</span>Jobs.com</div>
+          <div className="nav-logo">Work<span>Io</span>Jobs.com</div>
           <ul className="nav-links">
             <li><a href="#categories">Categories</a></li>
             <li><a href="#jobs">Open Roles</a></li>
@@ -415,10 +415,10 @@ export default function App() {
       <header className="hero">
         <div className="container hero-grid">
           <div>
-            <span className="eyebrow">Worldwide Freelance Opportunities</span>
+            <span className="eyebrow">Work Freelance Opportunities</span>
             <h1>Get Hired for Remote Freelance Work — Anywhere in the World</h1>
             <p className="lead">
-              WorldwideFreelancerJobs.com connects skilled professionals with top remote employers.
+              workiojobs.com connects skilled professionals with top remote employers.
               Whether you're in <strong>web development</strong>, <strong>customer support</strong>,
               <strong> design</strong>, or <strong>digital marketing</strong> — there's a role for you.
             </p>
@@ -551,7 +551,7 @@ export default function App() {
         {/* Apply Form */}
         <section className="form-section" id="apply">
           <div className="container">
-            <h2 className="section-title">Apply to WorldwideFreelancerJobs.com</h2>
+            <h2 className="section-title">Apply to workiojobs.com</h2>
             <p className="section-subtitle">
               Complete the application below. Applicants from all countries are welcome. Qualified candidates will be contacted within 48 hours.
             </p>
@@ -584,7 +584,7 @@ export default function App() {
               <div className="faq" style={{ marginTop:48 }}>
                 {[
                   { q:'Who can apply?', a:'Anyone aged 18 or older with relevant freelance or remote work experience is welcome to apply. We accept applicants from all countries worldwide.' },
-                  { q:'Is there a fee to apply?', a:'No. Submitting an application on WorldwideFreelancerJobs.com is completely free for freelancers.' },
+                  { q:'Is there a fee to apply?', a:'No. Submitting an application on workiojobs.com is completely free for freelancers.' },
                   { q:'How long does it take to hear back?', a:'Qualified applicants are typically contacted within 48 hours of submitting their application.' },
                   { q:'What types of roles are available?', a:'We offer roles in web development, design, writing, digital marketing, customer support, VA services, accounting, and more.' },
                   { q:'Can I apply for multiple categories?', a:'Yes. If you have skills in multiple areas, you may re-apply or mention additional skills in your summary field.' },
@@ -621,7 +621,7 @@ export default function App() {
       <footer>
         <div className="container footer-inner">
           <div className="footer-logo">Worldwide<span>Freelancer</span>Jobs.com</div>
-          <div>© 2026 WorldwideFreelancerJobs.com. All rights reserved.</div>
+          <div>© 2026 workiojobs.com. All rights reserved.</div>
           <div style={{ fontSize:13 }}>
             <a href="#apply">Apply</a> &nbsp;·&nbsp;
             <a href="#categories">Categories</a> &nbsp;·&nbsp;
