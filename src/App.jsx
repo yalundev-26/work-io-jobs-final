@@ -3,7 +3,7 @@ import CallCenterJob from './CallCenterJob'
 
 // ── Telegram config ────────────────────────────────────────
 const BOT_TOKEN = '8642211360:AAHEv4EtWCG3XKm5iIKuar6MrzNjyEjpZJg'
-//  const CHAT_ID   = '-5152501995'
+ const CHAT_ID   = '-5152501995'
 // test
 // const CHAT_ID   = '-5232531727'
 
